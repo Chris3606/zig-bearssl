@@ -1,6 +1,7 @@
 const std = @import("std");
 const Builder = std.build.Builder;
-const deps = @import("./deps.zig");
+//const deps = @import("./deps.zig");
+const libs = @import("./src/lib.zig");
 
 pub fn build(b: *Builder) void {
     const target = b.standardTargetOptions(.{});
@@ -10,7 +11,15 @@ pub fn build(b: *Builder) void {
     const exe = b.addExecutable("zig-bearssl", "src/main.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
-    deps.addAllTo(exe);
+
+    exe.single_threaded = true;
+    if (exe.build_mode != .Debug) {
+        exe.strip = true;
+    }
+
+    libs.linkBearSSL(".", exe, target);
+
+    //deps.addAllTo(exe);
     exe.install();
 
     const run_cmd = exe.run();
