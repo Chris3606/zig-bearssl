@@ -8,7 +8,7 @@ pub fn build(b: *Builder) void {
     const mode = b.standardReleaseOptions();
 
     // Create 4 static libraries because bugs lol
-    const temp_libs = [_]*std.build.LibExeObjStep{ b.addStaticLibrary("zig-bearssl1", "src/lib.zig"), b.addStaticLibrary("zig-bearssl2", "src/lib.zig"), b.addStaticLibrary("zig-bearssl3", "src/lib.zig"), b.addStaticLibrary("zig-bearssl4", "src/lib.zig") };
+    const temp_libs = [_]*std.build.LibExeObjStep{ b.addStaticLibrary("zig-bearssl1", null), b.addStaticLibrary("zig-bearssl2", null), b.addStaticLibrary("zig-bearssl3", null), b.addStaticLibrary("zig-bearssl4", null) };
 
     for (temp_libs) |lib, idx| {
         // Target and mode
