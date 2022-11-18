@@ -23,9 +23,9 @@ pub fn main() anyerror!void {
     client.relocate();
     try client.reset("127.0.0.1", false);
 
-    // // For some reason, Zig's standard lib doesn't do this for us...
-    // _ = try std.os.windows.WSAStartup(2, 2);
-    // defer std.os.windows.WSACleanup() catch {};
+    // For some reason, Zig's standard lib doesn't do this for us...
+    _ = try std.os.windows.WSAStartup(2, 2);
+    defer std.os.windows.WSACleanup() catch {};
 
     // Connect to python server
     var sock_stream = try std.net.tcpConnectToHost(alloc, "127.0.0.1", 9999);

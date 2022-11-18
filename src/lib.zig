@@ -827,7 +827,7 @@ const asn1 = struct {
     }
 };
 
-const bearssl_sources = [_][]const u8{
+pub const bearssl_sources = [_][]const u8{
     "/BearSSL/src/settings.c",
     "/BearSSL/src/aead/ccm.c",
     "/BearSSL/src/aead/eax.c",
